@@ -12,10 +12,7 @@ name: GLaDOS Check-in
 
 on:
   schedule:
-    # 07:15 Beijing (UTC+8) = 23:15 UTC
-    - cron: "15 23 * * *"
-    # 15:15 Beijing (UTC+8) = 07:15 UTC
-    - cron: "15 7 * * *"
+    - cron: "45 10 * * *"
   workflow_dispatch:
 
 permissions:
@@ -33,11 +30,43 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v7
         with:
-          # Pin current Node.js LTS major version (not a floating alias).
           node-version: 24
 
       - name: Run GLaDOS check-in
         env:
-          # Repository Secret — never echo or print this value.
           GLADOS_COOKIE: ${{ secrets.GLADOS_COOKIE }}
         run: node cli/checkin.js
+
+
+
+# on:
+#   schedule:
+#     # 07:15 Beijing (UTC+8) = 23:15 UTC
+#     - cron: "15 23 * * *"
+#     # 15:15 Beijing (UTC+8) = 07:15 UTC
+#     - cron: "15 7 * * *"
+#   workflow_dispatch:
+
+# permissions:
+#   contents: read
+
+# jobs:
+#   checkin:
+#     runs-on: ubuntu-latest
+#     timeout-minutes: 10
+
+#     steps:
+#       - name: Check out repository
+#         uses: actions/checkout@v7
+
+#       - name: Set up Node.js
+#         uses: actions/setup-node@v7
+#         with:
+#           # Pin current Node.js LTS major version (not a floating alias).
+#           node-version: 24
+
+#       - name: Run GLaDOS check-in
+#         env:
+#           # Repository Secret — never echo or print this value.
+#           GLADOS_COOKIE: ${{ secrets.GLADOS_COOKIE }}
+#         run: node cli/checkin.js
