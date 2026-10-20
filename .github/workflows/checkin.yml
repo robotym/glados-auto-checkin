@@ -12,7 +12,8 @@ name: GLaDOS Check-in
 
 on:
   schedule:
-    - cron: "*/5 * * * *"
+    - cron: "17 7,15 * * *"
+      timezone: "Asia/Shanghai"
   workflow_dispatch:
 
 permissions:
